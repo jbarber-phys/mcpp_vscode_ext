@@ -1,0 +1,25 @@
+{
+    "name": "mcpp-lang",
+    "displayName": "Mcpp Lang",
+    "description": "Syntax highlighting and file editing for mcpp lang",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.67.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "mcpp",
+            "aliases": ["Mcpp", "mcpp"],
+            "extensions": [".mcpp",".mch"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "mcpp",
+            "scopeName": "source.mcpp",
+            "path": "./syntaxes/mcpp.tmLanguage.json"
+        }]
+    }
+}
