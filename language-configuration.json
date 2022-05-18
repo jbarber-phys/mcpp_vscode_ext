@@ -1,9 +1,26 @@
 {
+//see samples at https://github.com/microsoft/vscode-extension-samples
+
+//to publish locally, follow instructions from https://code.visualstudio.com/api/working-with-extensions/publishing-extension#packaging-extensions
+// >>> cd $(extensionRoot)
+// the first time:
+//      >>> npm install -g vsce
+
+//to package
+// >>> vsce package
+//to install
+// >>> code --install-extension mcpp-lang-0.0.1.vsix
+
+//(or may need to copy the .vsix into %USERPROFILE%\.vscode\extensions)
+//theme based on Dark+ [default dark]
+
+//see https://macromates.com/manual/en/language_grammars for list of color - name associations;
+//underline and italic themes can be applied with colors over them
     "comments": {
         // symbol used for single line comment. Remove this entry if your language does not support line comments
         "lineComment": "//",
         // symbols used for start and end a block comment. Remove this entry if your language does not support block comments
-        "blockComment": [ "/*", "*/" ]
+        //"blockComment": [ "/*", "*/" ]
     },
     // symbols used as brackets
     "brackets": [

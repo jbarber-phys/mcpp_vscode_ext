@@ -1,0 +1,147 @@
+{
+	"scopeName": "source.mcpp",
+	"name": "Mcpp",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},{
+			"include": "#testing"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#strings2"
+		},
+		{
+			"include": "#num"
+		},
+		{
+			"include": "#mccommand"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+			{
+				"name": "keyword.control.mcpp",
+				"match": "\\b(if|while|for|return)\\b"
+			},
+			{
+				"name": "keyword.control.access.mcpp",
+				"match": "\\b(extern|private|public)\\b"
+			},
+			{
+				"name": "keyword.type.mcpp",
+				"match": "\\b(int|void)\\b"
+			}
+		]
+		},
+		"strings": {
+			"name": "string.quoted.double.mcpp",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.mcpp",
+					"match": "\\\\."
+				}
+			]
+		},
+		"strings2": {
+			"name": "string.quoted.single.mcpp",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.mcpp",
+					"match": "\\\\."
+				}
+			]
+		},
+		"num": {
+			"name": "constant.numeric.mcpp",
+			"pattern": "\\d+"
+		},
+		"mccommand": {
+			"match": "\\$/([^\\n;]+)(?=;|\\n)",
+			"name": "keyword.mcfop.operator.mcpp",
+			"captures": {
+			"1": {"name": "mcfunction.mcpp"}
+			}
+			
+		},
+		"testing": {
+			"patterns": [
+			{
+				"name": "keyword.control.mcpp",
+				"match": "\\btest_purple\\b"
+			},
+			{
+				"name": "keyword.mcpp",
+				"match": "\\btest_blue\\b"
+			},
+			{
+				"name": "string.mcpp",
+				"match": "\\btest_orange\\b"
+			},
+			{
+				"name": "entity.name.type.mcpp",
+				"match": "\\btest_aqua\\b"
+			},
+			{
+				"name": "entity.name.function.mcpp",
+				"match": "\\btest_cream\\b"
+			},
+			{
+				"name": "comment.mcpp",
+				"match": "\\btest_green\\b"
+			},
+			{
+				"name": "variable.mcpp",
+				"match": "\\btest_cyan\\b"
+			},
+			{
+				"name": "invalid.illegal.mcpp",
+				"match": "\\btest_red\\b"
+			},
+			{
+				"name": "invalid.deprecated.mcpp",
+				"match": "\\btest_red2\\b"
+			},
+			{
+				"name": "markup.underline.mcpp",
+				"match": "\\btest_ul\\b"
+			},
+			{
+				"name": "markup.bold.mcpp",
+				"match": "\\btest_bf\\b"
+			},
+			{
+				"name": "markup.italic.mcpp",
+				"match": "\\btest_it\\b"
+			},
+			{
+				"name": "storage.mcpp",
+				"match": "\\btest_storage\\b"
+			},
+			{
+				"name": "storage.type.mcpp",
+				"match": "\\btest_storage\\b"
+			},
+			{
+				"name": "storage.modifier.mcpp",
+				"match": "\\btest_storage\\b"
+			},
+			{
+				"name": "support.mcpp",
+				"match": "\\btest_support\\b"
+			},
+			{
+				"name": "support.constant.mcpp",
+				"match": "\\btest_supportconst\\b"
+			}
+		]
+		}
+	}
+}

@@ -1,0 +1,6 @@
+{
+    "type": "dark",
+    "tokenColors": {
+        "comments": "#ff0000"
+    }
+}

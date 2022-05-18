@@ -1,5 +1,6 @@
 {
     "name": "mcpp-lang",
+    "repository": "https://github.com/jbarber-phys/mcpp_vscode_ext.git",
     "displayName": "Mcpp Lang",
     "description": "Syntax highlighting and file editing for mcpp lang",
     "version": "0.0.1",
@@ -20,6 +21,35 @@
             "language": "mcpp",
             "scopeName": "source.mcpp",
             "path": "./syntaxes/mcpp.tmLanguage.json"
-        }]
+        }],
+        "themes": [
+          {
+            "label": "Dark+ mcpp",
+            "uiTheme": "vs-dark",
+            "path": "./themes/darkplusext.tmTheme.json"
+          }
+        ],
+        "colors": [
+            {
+              "id": "mcfunction",
+              "description": "Color for minecraft commands.",
+              "defaults": {
+                "dark": "#ffCC88",
+                "light": "#884400",
+                "highContrast": "#ffCC88",
+                "highContrastLght": "#884400"
+              }
+            },
+            {
+              "id": "axis.x",
+              "description": "X axis color",
+              "defaults": {
+                "dark": "#ff0000",
+                "light": "#cc0000",
+                "highContrast": "#ff0000",
+                "highContrastLght": "#cc0000"
+              }
+            }
+          ]
     }
 }

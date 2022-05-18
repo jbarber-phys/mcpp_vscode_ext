@@ -1,0 +1,74 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"scopeName": "source.mcpp",
+	"name": "Mcpp",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#strings2"
+		},
+		{
+			"include": "#num"
+		},
+		{
+			"include": "#mccommand"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+			{
+				"name": "keyword.control.mcpp",
+				"match": "\\b(if|while|for|return)\\b"
+			},
+			{
+				"name": "keyword.control.access.mcpp",
+				"match": "\\b(extern|private|public)\\b"
+			},
+			{
+				"name": "keyword.type.mcpp",
+				"match": "\\b(int|void)\\b"
+			}
+		]
+		},
+		"strings": {
+			"name": "string.quoted.double.mcpp",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.mcpp",
+					"match": "\\\\."
+				}
+			]
+		},
+		"strings2": {
+			"name": "string.quoted.single.mcpp",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.mcpp",
+					"match": "\\\\."
+				}
+			]
+		},
+		"num": {
+			"name": "constant.numeric.mcpp",
+			"pattern": "\\d+"
+		},
+		"mccommand": {
+			"match": "\\$/(?<cmd>[^\\n;]+)(?=;|\\n)",
+			"name": "mcfop.operator.mcpp",
+			"captures": {
+			"1": {"name": "meta.embedded.line.mcfunction"}
+			}
+			
+		}
+	}
+}
