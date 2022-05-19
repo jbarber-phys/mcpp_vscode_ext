@@ -8,6 +8,9 @@
 			"include": "#comments"
 		},
 		{
+			"include": "#operators"
+		},
+		{
 			"include": "#coords"
 		},
 		{
@@ -71,8 +74,8 @@
 					"name": "markup.italic.mcpp"
 				}
 			},
-			"name": "entity.name.type.mcpp",
-			"match": "(@?[\\w-]+)\\s*\\[(((\\\"(\\\\\\\"|[^\\\"\\n])*\\\"|\\'(\\\\'|[^'\\n])*\\')|[^\\\"\\[\\]\\n]|\\[\\[|\\]\\])*)\\]"
+			"match": "(@?[\\w-]+)\\s*\\[(((\\\"(\\\\\\\"|[^\\\"\\n])*\\\"|\\'(\\\\'|[^'\\n])*\\')|[^\\\"\\[\\]\\n]|\\[\\[|\\]\\])*)\\]",
+			"name": "entity.name.type.mcpp"
 		},
 		"comments": {
 			"name": "comment.line.mcpp",
@@ -103,8 +106,8 @@
 					"name": "keyword.control.mcpp"
 				}
 			},
-			"name": "markup.underline.mcpp",
-			"match": "(?<ang1>(-?(\\d+(\\.\\d*|)|\\.\\d+))|[~](-?(\\d+(\\.\\d*|)|\\.\\d+))|[~])\\s+(?<ang2>(-?(\\d+(\\.\\d*|)|\\.\\d+))|[~](-?(\\d+(\\.\\d*|)|\\.\\d+))|[~])"
+			"match": "(?<ang1>(-?(\\d+(\\.\\d*|)|\\.\\d+))|[~](-?(\\d+(\\.\\d*|)|\\.\\d+))|[~])\\s+(?<ang2>(-?(\\d+(\\.\\d*|)|\\.\\d+))|[~](-?(\\d+(\\.\\d*|)|\\.\\d+))|[~])",
+			"name": "markup.underline.mcpp"
 		},
 		"resourcelocations": {
 			"captures": {
@@ -112,8 +115,8 @@
 					"name": "markup.underline.mcpp"
 				}
 			},
-			"name": "entity.name.function.mcpp",
-			"match": "(?<namespace>\\w+):(?<path>(\\w+\\/)*(?<end>\\w+))"
+			"match": "(?<namespace>\\w+):(?<path>(\\w+\\/)*(?<end>\\w+))",
+			"name": "entity.name.function.mcpp"
 		},
 		"domments": {
 			"captures": {
@@ -121,19 +124,19 @@
 					"name": "markup.italic.mcpp"
 				}
 			},
-			"name": "comment.block.documentation.mcpp",
-			"match": "\\/\\/\\/([^\\n]*)(?=\\n|$)"
+			"match": "\\/\\/\\/([^\\n]*)(?=\\n|$)",
+			"name": "comment.block.documentation.mcpp"
 		},
 		"strings2": {
-			"begin": "'",
-			"name": "string.quoted.single.mcpp",
-			"end": "'",
 			"patterns": [
 				{
 					"name": "constant.character.escape.mcpp",
 					"match": "\\\\."
 				}
-			]
+			],
+			"end": "'",
+			"name": "string.quoted.single.mcpp",
+			"begin": "'"
 		},
 		"builtinfunctions": {
 			"captures": {
@@ -141,39 +144,36 @@
 					"name": "markup.italic.mcpp"
 				}
 			},
-			"name": "keyword.control.mcpp",
-			"match": "\\b(debug|stopLongMult|teleport|warnf|errorf|tp|printf)(?=\\s*\\()"
+			"match": "\\b(debug|stopLongMult|teleport|warnf|errorf|tp|printf)(?=\\s*\\()",
+			"name": "keyword.control.mcpp"
 		},
 		"bools": {
 			"name": "keyword.control.mcpp",
 			"match": "\\b(true)|(false)\\b"
 		},
 		"mcfs": {
-			"begin": "\\$/",
-			"name": "constant.character.escape.mcpp",
-			"end": "(?=;|\n)",
 			"patterns": [
 				{
-					"begin": "\"",
-					"name": "string.quoted.double.mcpp",
-					"end": "\"",
 					"patterns": [
 						{
 							"name": "constant.character.escape.mcpp",
 							"match": "\\\\."
 						}
-					]
+					],
+					"end": "\"",
+					"name": "string.quoted.double.mcpp",
+					"begin": "\""
 				},
 				{
-					"begin": "'",
-					"name": "string.quoted.single.mcpp",
-					"end": "'",
 					"patterns": [
 						{
 							"name": "constant.character.escape.mcpp",
 							"match": "\\\\."
 						}
-					]
+					],
+					"end": "'",
+					"name": "string.quoted.single.mcpp",
+					"begin": "'"
 				},
 				{
 					"include": "#resourcelocations"
@@ -187,8 +187,8 @@
 							"name": "markup.italic.mcpp"
 						}
 					},
-					"name": "entity.name.type.mcpp",
-					"match": "(@p|@r|@a|@e|@s)\\b"
+					"match": "(@p|@r|@a|@e|@s)\\b",
+					"name": "entity.name.type.mcpp"
 				},
 				{
 					"name": "keyword.control.mcpp",
@@ -198,22 +198,29 @@
 					"name": "keyword.mcpp",
 					"match": "\\b(if|unless|store|score|entity|storage|block|blocks|positioned|in|rotated|as|at|facing|anchored|run|get|modify|merge|remove|add|set|players|objective|setdisplay|list|force|normal|revoke)\\b"
 				}
-			]
+			],
+			"end": "(?=;|\n)",
+			"name": "constant.character.escape.mcpp",
+			"begin": "\\$/"
 		},
 		"names": {
 			"name": "variable.mcpp",
 			"match": "[A-Za-z]\\w*"
 		},
 		"strings": {
-			"begin": "\"",
-			"name": "string.quoted.double.mcpp",
-			"end": "\"",
 			"patterns": [
 				{
 					"name": "constant.character.escape.mcpp",
 					"match": "\\\\."
 				}
-			]
+			],
+			"end": "\"",
+			"name": "string.quoted.double.mcpp",
+			"begin": "\""
+		},
+		"operators": {
+			"name": "operator.mcpp",
+			"match": "~~"
 		},
 		"subexecutes": {
 			"captures": {
@@ -221,8 +228,8 @@
 					"name": "markup.italic.mcpp"
 				}
 			},
-			"name": "keyword.control.mcpp",
-			"match": "\\b(as|at|in|anchored|asat|positioned|facing|rotated|align)\\b"
+			"match": "\\b(as|at|in|anchored|asat|positioned|facing|rotated|align)\\b",
+			"name": "keyword.control.mcpp"
 		},
 		"coords": {
 			"captures": {
@@ -236,8 +243,8 @@
 					"name": "comment.line.mcpp"
 				}
 			},
-			"name": "markup.underline.mcpp",
-			"match": "(?<x>(-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~](-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~])\\s+(?<y>(-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~](-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~])\\s+(?<z>(-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~](-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~])"
+			"match": "(?<x>(-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~](-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~])\\s+(?<y>(-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~](-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~])\\s+(?<z>(-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~](-?(\\d+(\\.\\d*|)|\\.\\d+))|[\\^~])",
+			"name": "markup.underline.mcpp"
 		},
 		"const_types": {
 			"captures": {
@@ -245,8 +252,8 @@
 					"name": "markup.bold.mcpp"
 				}
 			},
-			"name": "keyword.mcpp",
-			"match": "\\b(coords|num|flag|text|type|selector|nbt|rot)\\b"
+			"match": "\\b(coords|num|flag|text|type|selector|nbt|rot)\\b",
+			"name": "keyword.mcpp"
 		}
 	}
 }
