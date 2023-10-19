@@ -3,7 +3,7 @@
     "repository": "https://github.com/jbarber-phys/mcpp_vscode_ext.git",
     "displayName": "Mcpp Lang",
     "description": "Syntax highlighting and file editing for mcpp lang",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.67.0"
     },

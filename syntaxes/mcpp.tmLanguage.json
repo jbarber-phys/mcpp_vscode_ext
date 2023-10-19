@@ -2,64 +2,7 @@
 	"scopeName": "source.mcpp",
 	"patterns": [
 		{
-			"include": "#domments"
-		},
-		{
-			"include": "#comments"
-		},
-		{
-			"include": "#operators"
-		},
-		{
-			"include": "#coords"
-		},
-		{
-			"include": "#rots"
-		},
-		{
-			"include": "#numbers"
-		},
-		{
-			"include": "#strings"
-		},
-		{
-			"include": "#strings2"
-		},
-		{
-			"include": "#bools"
-		},
-		{
-			"include": "#targetselectors"
-		},
-		{
-			"include": "#mcfs"
-		},
-		{
-			"include": "#resourcelocations"
-		},
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#subexecutes"
-		},
-		{
-			"include": "#basictypes"
-		},
-		{
-			"include": "#const_types"
-		},
-		{
-			"include": "#structs"
-		},
-		{
-			"include": "#builtinfunctions"
-		},
-		{
-			"include": "#functions"
-		},
-		{
-			"include": "#names"
+			"include": "#global_patterns"
 		}
 	],
 	"name": "Mcpp",
@@ -69,13 +12,22 @@
 			"match": "\\b(byte|short|int|long|float|double|bool|void)\\b"
 		},
 		"targetselectors": {
-			"captures": {
-				"0": {
-					"name": "markup.italic.mcpp"
+			"patterns": [
+				{
+					"begin": "(@[\\w-]+)\\s*\\[",
+					"patterns": [
+						{
+							"include": "#selector_args"
+						}
+					],
+					"end": "\\]",
+					"name": "entity.name.type.mcpp"
+				},
+				{
+					"name": "entity.name.type.mcpp",
+					"match": "(@[\\w-]+)"
 				}
-			},
-			"match": "(@?[\\w-]+)\\s*\\[(((\\\"(\\\\\\\"|[^\\\"\\n])*\\\"|\\'(\\\\'|[^'\\n])*\\')|[^\\\"\\[\\]\\n]|\\[\\[|\\]\\])*)\\]",
-			"name": "entity.name.type.mcpp"
+			]
 		},
 		"comments": {
 			"name": "comment.line.mcpp",
@@ -83,7 +35,7 @@
 		},
 		"keywords": {
 			"name": "keyword.control.mcpp",
-			"match": "\\b(if|else|elif|private|public|extern|import|export|while|execute|for|break|return|this|const|ref|final|recursive)\\b"
+			"match": "\\b(if|else|elif|private|public|extern|import|export|while|execute|for|break|return|this|const|ref|final|recursive|thread|next|then|synchronized|start|restart|stop|goto|wait|tag|tick|load)\\b"
 		},
 		"functions": {
 			"name": "entity.name.function.mcpp",
@@ -91,11 +43,72 @@
 		},
 		"structs": {
 			"name": "entity.name.type.mcpp",
-			"match": "\\b(Vec3i|Entity|String|Vector|Vec3d|Entities)\\b"
+			"match": "\\b(Vec3i|Entity|Staque|Set|List|String|Vector|Queue|Map|Vec3d|Entities|Stack)\\b"
 		},
 		"numbers": {
 			"name": "constant.numeric.mcpp",
 			"match": "(-?\\d+)(\\.\\d*)?([Ee]\\-?\\d+)?([fdilsbFDILSB])?"
+		},
+		"global_patterns": {
+			"patterns": [
+				{
+					"include": "#domments"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#operators"
+				},
+				{
+					"include": "#coords"
+				},
+				{
+					"include": "#rots"
+				},
+				{
+					"include": "#numbers"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#bools"
+				},
+				{
+					"include": "#targetselectors"
+				},
+				{
+					"include": "#mcfs"
+				},
+				{
+					"include": "#resourcelocations"
+				},
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#subexecutes"
+				},
+				{
+					"include": "#basictypes"
+				},
+				{
+					"include": "#const_types"
+				},
+				{
+					"include": "#structs"
+				},
+				{
+					"include": "#builtinfunctions"
+				},
+				{
+					"include": "#functions"
+				},
+				{
+					"include": "#names"
+				}
+			]
 		},
 		"rots": {
 			"captures": {
@@ -127,53 +140,24 @@
 			"match": "\\/\\/\\/([^\\n]*)(?=\\n|$)",
 			"name": "comment.block.documentation.mcpp"
 		},
-		"strings2": {
-			"patterns": [
-				{
-					"name": "constant.character.escape.mcpp",
-					"match": "\\\\."
-				}
-			],
-			"end": "'",
-			"name": "string.quoted.single.mcpp",
-			"begin": "'"
-		},
 		"builtinfunctions": {
 			"captures": {
 				"0": {
 					"name": "markup.italic.mcpp"
 				}
 			},
-			"match": "\\b(debug|stopLongMult|teleport|warnf|errorf|tp|printf)(?=\\s*\\()",
+			"match": "\\b(debug|stopLongMult|teleport|warnf|printnextline|errorf|tp|printf)(?=\\s*\\()",
 			"name": "keyword.control.mcpp"
 		},
 		"bools": {
 			"name": "keyword.control.mcpp",
-			"match": "\\b(true)|(false)\\b"
+			"match": "(\\btrue\\b)|(\\bfalse\\b)"
 		},
 		"mcfs": {
+			"begin": "\\$/",
 			"patterns": [
 				{
-					"patterns": [
-						{
-							"name": "constant.character.escape.mcpp",
-							"match": "\\\\."
-						}
-					],
-					"end": "\"",
-					"name": "string.quoted.double.mcpp",
-					"begin": "\""
-				},
-				{
-					"patterns": [
-						{
-							"name": "constant.character.escape.mcpp",
-							"match": "\\\\."
-						}
-					],
-					"end": "'",
-					"name": "string.quoted.single.mcpp",
-					"begin": "'"
+					"include": "#strings"
 				},
 				{
 					"include": "#resourcelocations"
@@ -182,26 +166,26 @@
 					"include": "#targetselectors"
 				},
 				{
-					"captures": {
-						"0": {
-							"name": "markup.italic.mcpp"
-						}
-					},
-					"match": "(@p|@r|@a|@e|@s)\\b",
-					"name": "entity.name.type.mcpp"
-				},
-				{
 					"name": "keyword.control.mcpp",
 					"match": "\\b(advancement|attribute|ban|ban-ip|banlist|bossbar|clear|clone|data|datapack|debug|defaultgamemode|deop|difficulty|effect|enchant|execute|experience|fill|forceload|function|gamemode|gamerule|give|help|item|jfr|kick|kill|list|locate|locatebiome|loot|me|msg|op|pardon|pardon-ip|particle|perf|playsound|publish|recipe|reload|save-all|save-off|say|schedule|scoreboard|seed|setblock|setidletimeout|setworldspawn|spawnpoint|spectate|spreadplayers|stop|stopsound|summon|tag|team|teammsg|tm|teleport|tp|tell|tellraw|time|title|trigger|w|weather|whitelist|worldborder|xp)\\b"
 				},
 				{
 					"name": "keyword.mcpp",
 					"match": "\\b(if|unless|store|score|entity|storage|block|blocks|positioned|in|rotated|as|at|facing|anchored|run|get|modify|merge|remove|add|set|players|objective|setdisplay|list|force|normal|revoke)\\b"
+				},
+				{
+					"begin": "\\$\\(",
+					"patterns": [
+						{
+							"include": "#global_patterns"
+						}
+					],
+					"end": "\\)",
+					"name": "variable.mcpp"
 				}
 			],
 			"end": "(?=;|\n)",
-			"name": "constant.character.escape.mcpp",
-			"begin": "\\$/"
+			"name": "constant.character.escape.mcpp"
 		},
 		"names": {
 			"name": "variable.mcpp",
@@ -210,17 +194,49 @@
 		"strings": {
 			"patterns": [
 				{
-					"name": "constant.character.escape.mcpp",
-					"match": "\\\\."
+					"begin": "\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.mcpp",
+							"match": "\\\\."
+						}
+					],
+					"end": "\"",
+					"name": "string.quoted.double.mcpp"
+				},
+				{
+					"begin": "'",
+					"patterns": [
+						{
+							"name": "constant.character.escape.mcpp",
+							"match": "\\\\."
+						}
+					],
+					"end": "'",
+					"name": "string.quoted.single.mcpp"
 				}
-			],
-			"end": "\"",
-			"name": "string.quoted.double.mcpp",
-			"begin": "\""
+			]
 		},
 		"operators": {
 			"name": "operator.mcpp",
 			"match": "~~"
+		},
+		"selector_args": {
+			"patterns": [
+				{
+					"include": "#strings"
+				},
+				{
+					"begin": "\\[",
+					"patterns": [
+						{
+							"include": "#selector_args"
+						}
+					],
+					"end": "\\]",
+					"name": "entity.name.type.mcpp"
+				}
+			]
 		},
 		"subexecutes": {
 			"captures": {
