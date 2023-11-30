@@ -7,9 +7,49 @@
 	],
 	"name": "Mcpp",
 	"repository": {
+		"comments_block": {
+			"begin": "\\/\\*(?!\\*)",
+			"patterns": [
+				{
+					"name": "comment.line.mcpp",
+					"match": "[\\s\\S]"
+				},
+				{
+					"name": "comment.line.mcpp",
+					"match": "\\n"
+				}
+			],
+			"end": "\\*\\/",
+			"name": "comment.line.mcpp"
+		},
 		"basictypes": {
 			"name": "keyword.mcpp",
 			"match": "\\b(byte|short|int|long|float|double|bool|void)\\b"
+		},
+		"domments_block": {
+			"endCaptures": {
+				"0": {
+					"name": "markup.italic.mcpp"
+				}
+			},
+			"name": "comment.line.mcpp",
+			"begin": "\\/\\*\\*",
+			"patterns": [
+				{
+					"name": "markup.italic.mcpp",
+					"match": "[\\s\\S]"
+				},
+				{
+					"name": "markup.italic.mcpp",
+					"match": "\\n"
+				}
+			],
+			"end": "\\*\\/",
+			"beginCaptures": {
+				"0": {
+					"name": "markup.italic.mcpp"
+				}
+			}
 		},
 		"targetselectors": {
 			"patterns": [
@@ -35,7 +75,7 @@
 		},
 		"keywords": {
 			"name": "keyword.control.mcpp",
-			"match": "\\b(if|else|elif|private|public|extern|import|export|while|execute|for|break|return|this|const|ref|final|recursive|thread|next|then|synchronized|start|restart|stop|goto|wait|tag|tick|load)\\b"
+			"match": "\\b(if|else|elif|private|public|extern|import|export|while|execute|for|break|return|this|const|ref|final|recursive|thread|next|then|synchronized|volatile|start|restart|stop|kill|goto|wait|exit|tag|tick|load|switch|case|default|target)\\b"
 		},
 		"functions": {
 			"name": "entity.name.function.mcpp",
@@ -43,11 +83,15 @@
 		},
 		"structs": {
 			"name": "entity.name.type.mcpp",
-			"match": "\\b(Vec3i|Entity|Staque|Set|List|String|Vector|Queue|Map|Vec3d|Entities|Stack)\\b"
+			"match": "\\b(Vec3i|Entity|Player|Set|Bossbar|Compound|String|Vec3d|Entities|Stack|Staque|Uuid|Random|Obj|List|particles|Vector|Queue|Map|Players)\\b"
 		},
 		"numbers": {
 			"name": "constant.numeric.mcpp",
 			"match": "(-?\\d+)(\\.\\d*)?([Ee]\\-?\\d+)?([fdilsbFDILSB])?"
+		},
+		"nulls": {
+			"name": "keyword.control.mcpp",
+			"match": "\\bnull\\b"
 		},
 		"global_patterns": {
 			"patterns": [
@@ -56,6 +100,12 @@
 				},
 				{
 					"include": "#comments"
+				},
+				{
+					"include": "#domments_block"
+				},
+				{
+					"include": "#comments_block"
 				},
 				{
 					"include": "#operators"
@@ -74,6 +124,9 @@
 				},
 				{
 					"include": "#bools"
+				},
+				{
+					"include": "#nulls"
 				},
 				{
 					"include": "#targetselectors"
@@ -146,7 +199,7 @@
 					"name": "markup.italic.mcpp"
 				}
 			},
-			"match": "\\b(debug|stopLongMult|teleport|warnf|printnextline|errorf|tp|printf)(?=\\s*\\()",
+			"match": "\\b(debug|stopLongMult|teleport|format|printnextline|errorf|kill|actionbarf|printf|subtitlef|doLongMult|warnf|formatLit|tp|titlef)(?=\\s*\\()",
 			"name": "keyword.control.mcpp"
 		},
 		"bools": {
@@ -164,6 +217,10 @@
 				},
 				{
 					"include": "#targetselectors"
+				},
+				{
+					"name": "markup.italic.mcpp",
+					"match": "\\\\\\h*\\n\\h*"
 				},
 				{
 					"name": "keyword.control.mcpp",
@@ -268,7 +325,7 @@
 					"name": "markup.bold.mcpp"
 				}
 			},
-			"match": "\\b(coords|num|flag|text|type|selector|nbt|rot)\\b",
+			"match": "\\b(coords|num|flag|text|type|selector|nbt|rot|none)\\b",
 			"name": "keyword.mcpp"
 		}
 	}
