@@ -17,11 +17,26 @@
             "aliases": ["Mcpp", "mcpp"],
             "extensions": [".mcpp",".mch"],
             "configuration": "./language-configuration.json"
-        }],
+        },
+        {
+            "id": "mcpp-markdown-injection"
+        }
+      ],
         "grammars": [{
             "language": "mcpp",
             "scopeName": "source.mcpp",
             "path": "./syntaxes/mcpp.tmLanguage.json"
+        },
+        {
+            "language": "mcpp-markdown-injection",
+            "scopeName": "markdown.mcpp.codeblock",
+            "path": "./syntaxes/mcpp-markdown-injection.json",
+            "injectTo": [
+                "text.html.markdown"
+            ],
+            "embeddedLanguages": {
+                "meta.embedded.block.mcpp": "mcpp"
+            }
         }],
         "themes": [
           {

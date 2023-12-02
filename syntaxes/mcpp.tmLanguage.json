@@ -27,11 +27,6 @@
 			"match": "\\b(byte|short|int|long|float|double|bool|void)\\b"
 		},
 		"domments_block": {
-			"endCaptures": {
-				"0": {
-					"name": "markup.italic.mcpp"
-				}
-			},
 			"name": "comment.line.mcpp",
 			"begin": "\\/\\*\\*",
 			"patterns": [
@@ -46,6 +41,11 @@
 			],
 			"end": "\\*\\/",
 			"beginCaptures": {
+				"0": {
+					"name": "markup.italic.mcpp"
+				}
+			},
+			"endCaptures": {
 				"0": {
 					"name": "markup.italic.mcpp"
 				}
